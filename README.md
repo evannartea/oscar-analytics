@@ -2,3 +2,23 @@
 
 ### Academy Awards History Dashboard
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
+
+### 📌 Project Overview
+#
+
+### 📷 Examples
+#
+
+### 🎯 What I Learned
+#
+
+### 📝 Notes
+#
+
+### 📄 Credits
+#
+**Author:** Evan Nartea<br>
+**Contributors:** Evan Nartea<br>
+<br>
+Oscars data: https://oscarbase.com<br>
+Oscars logo: https://brand.oscars.org/oscars
