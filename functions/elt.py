@@ -9,14 +9,14 @@ def extract_data():
     response = requests.get(url)
 
     # Parse response content as JSON
-    nominations = response.json()
+    data = response.json()
 
     # Create empty list to contain data
-    data = []
+    nominations = []
 
     # Append data from API endpoint to empty list
-    for nomination in nominations["data"]:
-        data.append({
+    for nomination in data["data"]:
+        nominations.append({
             "nomination_id": nomination["id"],
             "ceremony_id": nomination["ceremony_id"],
             "ceremony_year": nomination["ceremony_year"],
@@ -30,9 +30,7 @@ def extract_data():
             "winner": nomination["winner"]
         })
 
-    df = pd.DataFrame(data)
-
-    return df
+    return pd.DataFrame(nominations)
 
 # Export DataFrame to PostgreSQL database
 def export_to_db(table_name, df, engine):
