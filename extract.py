@@ -9,13 +9,13 @@ def extract_oscar_data():
     response = requests.get(url)
 
     # Parse response content as JSON
-    data = response.json()
+    nominations = response.json()
 
     # Create empty list to contain data
-    nominations = []
+    data = []
 
     # Append data from API endpoint to empty list
-    for nomination in data["data"]:
+    for nomination in nominations["data"]:
         nomination_data = {
             "nomination_id": nomination["id"],
             "ceremony_id": nomination["ceremony_id"],
@@ -29,11 +29,11 @@ def extract_oscar_data():
             "is_song": nomination["is_song"],
             "winner": nomination["winner"]
         }
-        nominations.append(nomination_data)
+        data.append(nomination_data)
 
-    return nominations
+    return data
 
-data = extract_oscar_data()
-df = pd.DataFrame(data)
+oscar_data = extract_oscar_data()
+df = pd.DataFrame(oscar_data)
 
-print(df.head())
+print(len(df))
