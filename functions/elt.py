@@ -16,7 +16,7 @@ def extract_data():
 
     # Append data from API endpoint to empty list
     for nomination in nominations["data"]:
-        nomination_data = {
+        data.append({
             "nomination_id": nomination["id"],
             "ceremony_id": nomination["ceremony_id"],
             "ceremony_year": nomination["ceremony_year"],
@@ -28,8 +28,7 @@ def extract_data():
             "nominee": nomination["nominee"],
             "is_song": nomination["is_song"],
             "winner": nomination["winner"]
-        }
-        data.append(nomination_data)
+        })
 
     df = pd.DataFrame(data)
 
