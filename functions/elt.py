@@ -32,3 +32,12 @@ def extract_data():
         data.append(nomination_data)
 
     return data
+
+# Export DataFrame to PostgreSQL database
+def export_to_db(table_name, df, engine):
+    df.to_sql(
+        name=table_name,
+        con=engine,
+        if_exists="replace",
+        index=False
+    )
