@@ -20,5 +20,5 @@
 **Author:** Evan Nartea<br>
 **Contributors:** Evan Nartea<br>
 <br>
-Oscars data: https://oscarbase.com<br>
+Oscars data: https://api.oscarbase.com<br>
 Oscars logo: https://brand.oscars.org/oscars
