@@ -1,5 +1,13 @@
+import os
 import requests
 import pandas as pd
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+
+load_dotenv()
+
+database_url = os.getenv("DATABASE_URL")
+engine = create_engine(database_url)
 
 def extract_data():
     # Define API endpoint
@@ -31,10 +39,12 @@ def extract_data():
         }
         data.append(nomination_data)
 
-    return data
+    df = pd.DataFrame(data)
+
+    return df
 
 # Export DataFrame to PostgreSQL database
-def export_to_db(table_name, df, engine):
+def export_to_db(table_name, df):
     df.to_sql(
         name=table_name,
         con=engine,
