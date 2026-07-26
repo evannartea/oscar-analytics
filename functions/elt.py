@@ -7,6 +7,7 @@ def extract_data(endpoint):
 
     # Send GET request to API endpoint
     response = requests.get(url)
+    print(f"Response code: {response.status_code}")
 
     # Parse response content as JSON
     data = response.json()
