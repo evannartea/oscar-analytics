@@ -1,4 +1,5 @@
 <img src="images/Oscars_Logo_Gradient (1).png" height="1360" width="279">
+©A.M.P.A.S.®
 
 ### Academy Awards History Dashboard
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
