@@ -1,6 +1,13 @@
+import os
 import time
 import requests
 import pandas as pd
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+
+load_dotenv()
+database_url = os.getenv("DATABASE_URL")
+engine = create_engine(database_url)
 
 def extract_data(endpoint):
     # Define API endpoint
@@ -121,8 +128,8 @@ def extract_data(endpoint):
     else:
         raise ValueError("Invalid endpoint!")
 
-# Export DataFrame to PostgreSQL database
-def export_to_db(table_name, df, engine):
+# Load DataFrame to PostgreSQL database
+def load_to_db(table_name, df, engine):
     df.to_sql(
         name=table_name,
         con=engine,
@@ -130,3 +137,17 @@ def export_to_db(table_name, df, engine):
         if_exists="replace",
         index=False
     )
+
+df_nods = extract_data("nominations")
+df_ceremonies = extract_data("ceremonies")
+df_categories = extract_data("categories")
+df_movies = extract_data("movies")
+df_nominees = extract_data("nominees")
+
+load_to_db("nominations", df_nods, engine)
+load_to_db("ceremonies", df_ceremonies, engine)
+load_to_db("categories", df_categories, engine)
+load_to_db("movies", df_movies, engine)
+load_to_db("nominees", df_nominees, engine)
+
+print("Exported successfully!")
