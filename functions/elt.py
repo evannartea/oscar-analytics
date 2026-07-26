@@ -5,13 +5,8 @@ def extract_data(endpoint):
     # Define API endpoint
     url = f"https://api.oscarbase.com/api/{endpoint}"
 
-    # Define parameters
-    params = {
-        "is_song": False
-    }
-
     # Send GET request to API endpoint
-    response = requests.get(url, params=params)
+    response = requests.get(url)
 
     # Parse response content as JSON
     data = response.json()
