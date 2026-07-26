@@ -5,8 +5,13 @@ def extract_data(endpoint):
     # Define API endpoint
     url = f"https://api.oscarbase.com/api/{endpoint}"
 
+    # Define parameters
+    params = {
+        "is_song": False
+    }
+
     # Send GET request to API endpoint
-    response = requests.get(url)
+    response = requests.get(url, params=params)
 
     # Parse response content as JSON
     data = response.json()
@@ -20,25 +25,46 @@ def extract_data(endpoint):
             nominations.append({
                 "nomination_id": nomination["id"],
                 "ceremony_id": nomination["ceremony_id"],
-                "ceremony_year": nomination["ceremony_year"],
                 "category_id": nomination["category_id"],
-                "category": nomination["category"],
                 "movie_id": nomination["movie_id"],
-                "movie": nomination["movie"],
                 "nominee_id": nomination["nominee_id"],
-                "nominee": nomination["nominee"],
-                "is_song": nomination["is_song"],
                 "winner": nomination["winner"]
             })
 
         return pd.DataFrame(nominations)
+
+    elif endpoint == "ceremonies":
+        ceremonies = []
+
+        for ceremony in data["data"]:
+            ceremonies.append({
+                "id": ceremony["id"],
+                "ceremony_year": ceremony["ceremony_year"],
+                "ceremony_date": ceremony["date"],
+                "venue": ceremony["venue"]
+            })
+
+        return pd.DataFrame(ceremonies)
+    
+    elif endpoint == "categories":
+        categories = []
+
+        for category in data["data"]:
+            categories.append({
+                "id": category["id"],
+                "category_name": category["category_name"],
+                "category_group": category["category_group"],
+                "era": category["era"]
+            })
+
+        return pd.DataFrame(categories)
 
     elif endpoint == "movies":
         movies = []
 
         for movie in data["data"]:
             movies.append({
-                "movie_id": movie["id"],
+                "id": movie["id"],
                 "title": movie["title"],
                 "release_date": movie["release_date"],
                 "runtime": movie["runtime"],
@@ -53,7 +79,7 @@ def extract_data(endpoint):
 
         for nominee in data["data"]:
             nominees.append({
-                "nominee_id": nominee["id"],
+                "id": nominee["id"],
                 "full_name": nominee["name"],
                 "birthday": nominee["birthday"],
                 "deathday": nominee["deathday"],
