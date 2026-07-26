@@ -1,2 +1,5 @@
+# Cleaned data for Tableau
+data/
+
 # Top secret information
 *.env
