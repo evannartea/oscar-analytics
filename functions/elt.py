@@ -23,6 +23,7 @@ def extract_data(endpoint):
                 "category_id": nomination["category_id"],
                 "movie_id": nomination["movie_id"],
                 "nominee_id": nomination["nominee_id"],
+                "is_song": nomination["is_song"],
                 "winner": nomination["winner"]
             })
 
