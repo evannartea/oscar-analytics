@@ -1,13 +1,7 @@
-import os
 import time
 import requests
 import pandas as pd
-from dotenv import load_dotenv
-from sqlalchemy import create_engine
-
-load_dotenv()
-database_url = os.getenv("DATABASE_URL")
-engine = create_engine(database_url)
+from config import engine
 
 def extract_data(endpoint):
     # Define API endpoint
