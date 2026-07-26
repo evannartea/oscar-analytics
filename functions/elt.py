@@ -37,7 +37,7 @@ def export_to_db(table_name, df, engine):
     df.to_sql(
         name=table_name,
         con=engine,
-        schema="raw"
+        schema="raw",
         if_exists="replace",
         index=False
     )
