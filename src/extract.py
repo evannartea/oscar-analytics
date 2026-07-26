@@ -144,4 +144,4 @@ load_to_db("categories", df_categories, engine)
 load_to_db("movies", df_movies, engine)
 load_to_db("nominees", df_nominees, engine)
 
-print("Exported successfully!")
+print("Loaded successfully!")
