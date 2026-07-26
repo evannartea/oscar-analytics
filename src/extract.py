@@ -1,3 +1,4 @@
+import time
 import requests
 import pandas as pd
 
@@ -5,19 +6,51 @@ def extract_data(endpoint):
     # Define API endpoint
     url = f"https://api.oscarbase.com/api/{endpoint}"
 
-    # Send GET request to API endpoint
-    response = requests.get(url)
-    print(f"Response code: {response.status_code}")
+    # Pagination params
+    page = 1
+    limit = 100
 
-    # Parse response content as JSON
-    data = response.json()
+    # Create empty list to store all results from every page
+    all_data = []
+
+    while True:
+        # Send GET request to API endpoint
+        response = requests.get(
+            url,
+            params= {
+                "page": page,
+                "limit": limit
+            }
+        )
+        if response.status_code == 429:
+            print("Rate limited. Waiting 30 seconds...")
+            time.sleep(30)
+            continue
+
+        print(f"Endpoint: {endpoint} | Page: {page} | Response code: {response.status_code}")
+
+        # Parse response content as JSON
+        data = response.json()
+
+        # Add page's record
+        all_data.extend(data["data"])
+
+        if "pagination" not in data:
+                    break
+
+        if page >= data["pagination"]["totalPages"]:
+            break
+
+        page += 1
+        time.sleep(1)
+
 
     if endpoint == "nominations":
         # Create empty list to store response content
         nominations = []
 
         # Append data from API endpoints to empty list
-        for nomination in data["data"]:
+        for nomination in all_data:
             nominations.append({
                 "nomination_id": nomination["id"],
                 "ceremony_id": nomination["ceremony_id"],
@@ -33,7 +66,7 @@ def extract_data(endpoint):
     elif endpoint == "ceremonies":
         ceremonies = []
 
-        for ceremony in data["data"]:
+        for ceremony in all_data:
             ceremonies.append({
                 "id": ceremony["id"],
                 "ceremony_year": ceremony["ceremony_year"],
@@ -46,7 +79,7 @@ def extract_data(endpoint):
     elif endpoint == "categories":
         categories = []
 
-        for category in data["data"]:
+        for category in all_data:
             categories.append({
                 "id": category["id"],
                 "category_name": category["category_name"],
@@ -59,7 +92,7 @@ def extract_data(endpoint):
     elif endpoint == "movies":
         movies = []
 
-        for movie in data["data"]:
+        for movie in all_data:
             movies.append({
                 "id": movie["id"],
                 "title": movie["title"],
@@ -74,7 +107,7 @@ def extract_data(endpoint):
     elif endpoint == "nominees":
         nominees = []
 
-        for nominee in data["data"]:
+        for nominee in all_data:
             nominees.append({
                 "id": nominee["id"],
                 "full_name": nominee["name"],
