@@ -39,6 +39,7 @@ def extract_data(endpoint):
         if "pagination" not in data:
             break
 
+        # Check if last page reached
         if page >= data["pagination"]["totalPages"]:
             break
 
