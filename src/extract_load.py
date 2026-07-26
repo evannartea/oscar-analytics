@@ -46,6 +46,7 @@ def extract_data(endpoint):
         page += 1
         time.sleep(1)
 
+    print("Extracted successfully!")
 
     if endpoint == "nominations":
         # Create empty list to store response content
