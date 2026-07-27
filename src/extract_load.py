@@ -71,7 +71,7 @@ def extract_data(endpoint):
 
         for ceremony in all_data:
             ceremonies.append({
-                "id": ceremony["id"],
+                "ceremony_id": ceremony["id"],
                 "ceremony_year": ceremony["ceremony_year"],
                 "ceremony_date": ceremony["date"],
                 "venue": ceremony["venue"]
@@ -84,7 +84,7 @@ def extract_data(endpoint):
 
         for category in all_data:
             categories.append({
-                "id": category["id"],
+                "category_id": category["id"],
                 "category_name": category["category_name"],
                 "category_group": category["category_group"],
                 "era": category["era"]
@@ -97,7 +97,7 @@ def extract_data(endpoint):
 
         for movie in all_data:
             movies.append({
-                "id": movie["id"],
+                "movie_id": movie["id"],
                 "title": movie["title"],
                 "release_date": movie["release_date"],
                 "runtime": movie["runtime"],
@@ -112,7 +112,7 @@ def extract_data(endpoint):
 
         for nominee in all_data:
             nominees.append({
-                "id": nominee["id"],
+                "nominee_id": nominee["id"],
                 "full_name": nominee["name"],
                 "birthday": nominee["birthday"],
                 "deathday": nominee["deathday"],
