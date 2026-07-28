@@ -1,5 +1,4 @@
 import pandas as pd
-from config import engine
 
 # Export data from PostgreSQL to CSV files
 def export_to_csv(table_name, engine):
