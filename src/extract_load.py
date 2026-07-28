@@ -36,6 +36,7 @@ def extract_data(endpoint):
         # Add page's record
         all_data.extend(data["data"])
 
+        # Check for endpoints with only 1 page
         if "pagination" not in data:
             break
 
