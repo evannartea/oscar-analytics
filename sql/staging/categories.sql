@@ -1,5 +1,5 @@
 CREATE TABLE staging.categories AS
-SELECT
+SELECT DISTINCT
 	ct.category_id,
 	ct.category_name,
 	initcap(ct.category_group) AS category_group,

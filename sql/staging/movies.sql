@@ -1,9 +1,10 @@
 CREATE TABLE staging.movies AS
-SELECT
+SELECT 
 	m.movie_id,
 	m.title,
-	to_date(m.release_date, 'YYYY-MM-DD') AS release_date,
-	m.genres,
-	m.origin_country
+	m.release_date::date AS release_date,
+    m.runtime,
+	trim(m.genres,'{}') AS genres,
+	trim(m.origin_country,'{}') AS origin_country
 FROM raw.movies m
 ORDER BY m.movie_id;

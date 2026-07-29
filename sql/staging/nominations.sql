@@ -1,5 +1,5 @@
 CREATE TABLE staging.nominations AS
-SELECT
+SELECT DISTINCT
 	n.nomination_id,
 	n.category_id,
 	n.ceremony_id,
