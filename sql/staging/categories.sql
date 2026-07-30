@@ -1,8 +1,8 @@
 CREATE TABLE staging.categories AS
 SELECT DISTINCT
-	ct.category_id,
-	ct.category_name,
+	rct.category_id,
+	rct.category_name,
 	initcap(ct.category_group) AS category_group,
-	ct.era
-FROM raw.categories ct
-ORDER BY ct.category_id;
+	rct.era
+FROM raw.categories rct
+ORDER BY rct.category_id;

@@ -1,9 +1,10 @@
 CREATE TABLE staging.nominees AS
 SELECT
-	ne.nominee_id,
-	ne.full_name,
-	ne.birthday::date AS birthday,
-	ne.deathday::date AS deathday,
-	ne.birthplace
-FROM raw.nominees ne
-ORDER BY ne.nominee_id;
+	rne.nominee_id,
+	rne.tmdb_person_id,
+	rne.full_name,
+	rne.birthday::date AS birthday,
+	rne.deathday::date AS deathday,
+	rne.birthplace
+FROM raw.nominees rne
+ORDER BY rne.full_name;
