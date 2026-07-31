@@ -114,6 +114,7 @@ def extract_data(endpoint):
         for nominee in all_data:
             nominees.append({
                 "nominee_id": nominee["id"],
+                "tmdb_person_id": nominee["tmdb_person_id"],
                 "full_name": nominee["name"],
                 "birthday": nominee["birthday"],
                 "deathday": nominee["deathday"],
