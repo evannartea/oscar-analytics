@@ -1,4 +1,4 @@
-CREATE TABLE warehouse.dim_categories AS
+CREATE TABLE warehouse.dim_category AS
 SELECT
 	sct.category_id,
 	sct.category_name,
